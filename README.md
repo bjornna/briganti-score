@@ -4,6 +4,27 @@ This is a project trying to calculate the Brigani score as defined here: https:/
 
 ```txt 
 
+survival	Preoperative BCR (Cores)	
+
+Intercept	6.54845103
+Patient Age	-0.01142415
+Preoperative PSA	-0.42661017
+Preoperative PSA Spline 1	0.00341088
+Preoperative PSA Spline 2	-0.00936064
+Biopsy Gleason Grade Group 2	-0.87637926
+Biopsy Gleason Grade Group 3	-1.96738364
+Biopsy Gleason Grade Group 4	-2.63816261
+Biopsy Gleason Grade Group 5	-2.6826231
+Clinical Stage 2A	-0.22515847
+Clinical Stage 2B	-0.69429852
+Clinical Stage 2C	-0.43136148
+Clinical Stage 3+	-0.8300922
+No. of Positive Cores	-0.0288405
+No. of Negative Cores	0.07753207
+Scaling Parameter	1.08821949
+C-index	0.80725646
+Model N	7186
+
 survival	Preoperative BCR	
 Intercept	6.89129254
 Patient Age - 0.00667038
@@ -40,7 +61,9 @@ No.of Positive Cores	0.09196409
 No.of Negative Cores - 0.08716265
 AUC	0.78372783
 Model N	7165
-logistic	Extracapsular Extension	Intercept - 4.43655304
+
+logistic	Extracapsular Extension	
+Intercept - 4.43655304
 Patient Age	0.02833911
 Preoperative PSA	0.23913315
 Preoperative PSA Spline 1 - 0.00161171
@@ -55,6 +78,7 @@ Clinical Stage 2C	0.84127043
 Clinical Stage 3 + 1.66646485
 AUC	0.7627261
 Model N	12814
+
 logistic	Lymph Node Involvement(Cores)	Intercept - 5.37368223
 Patient Age	0.00906354
 Preoperative PSA	0.21239809
@@ -72,6 +96,7 @@ No.of Positive Cores	0.05499551
 No.of Negative Cores - 0.11987793
 AUC	0.84916281
 Model N	6599
+
 logistic	Lymph Node Involvement	Intercept - 6.16816581
 Patient Age	0.0057656
 Preoperative PSA	0.1995788
@@ -87,6 +112,7 @@ Clinical Stage 2C	1.18370788
 Clinical Stage 3 + 1.34546403
 AUC	0.8478659
 Model N	11816
+
 logistic	Organ Confined Disease(Cores)	Intercept	3.70545391
 Patient Age - 0.03143678
 Preoperative PSA - 0.21663245
