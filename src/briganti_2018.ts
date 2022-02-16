@@ -20,39 +20,25 @@ const Coeffecients = {
     gleasonGte4: Biopsy_Gleason_grade_group_gte4_at_targeted_biopsy,
     perentage: Percentage_of_cores_with_clinically_significant_PCa_at_concomitant_systematic_biopsy
 }
-type BinaryTrueFalse = 0 | 1;
+export type BinaryTrueFalse = 0 | 1;
 
 
-interface Model {
+export interface Model {
     psa: number;
-    organConfined: BinaryTrueFalse;
     extracapsularExtension: BinaryTrueFalse;
     seminalVesicleInvasion: BinaryTrueFalse;
     maxLesionDiameter: number;
-    biopsyGrade: 1 | 2 | 3 | 4 | 5;
+    biopsyGrade3: BinaryTrueFalse,
+    biopsyGradeGte4: BinaryTrueFalse,
     percentageCore: number;
 
 }
-const p1: Model = {
-    psa: 17.9,
-    organConfined: 0,
-    extracapsularExtension: 1,
-    seminalVesicleInvasion: 0,
-    maxLesionDiameter: 38,
-    biopsyGrade: 4,
-    percentageCore: 67.1
 
-}
 
-//console.log(Coeffecients);
-//console.log(p1);
-const result = calculate(p1);
-console.log("----");
-console.log("Result p1 expeced 76");
-console.log(Math.round(result * 100));
-console.log("----");
 
-function calculate(m: Model) {
+
+
+export function calculate(m: Model) {
 
     const c = Coeffecients;
 
@@ -61,31 +47,16 @@ function calculate(m: Model) {
     const v2 = m.extracapsularExtension * c.extracap;
     const v3 = m.seminalVesicleInvasion * c.seminal;
     const v4 = m.maxLesionDiameter * c.maxLesion;
-    const v5 = isGleason3(m) * c.gleason3;
-    const v6 = isGleasonGte4(m) * c.gleasonGte4;
+    const v5 = m.biopsyGrade3 * c.gleason3;
+    const v6 = m.biopsyGradeGte4 * c.gleasonGte4;
     const v7 = m.percentageCore * c.perentage;
 
     const calculatedCoeffecients = [v0, v1, v2, v3, v4, v5, v6, v7];
-    //console.log(calculatedCoeffecients);
+
 
     const xB = calculatedCoeffecients.reduce((partialSum, a) => partialSum + a, 0);
     return Math.exp(xB) / (1 + Math.exp(xB));
 
 }
-function isGleason3(m: Model): BinaryTrueFalse {
-    if (m.biopsyGrade === 3) {
-        //  console.log("Model is gleason == 3");
-        return 1;
-    } else {
-        return 0;
-    }
-}
-function isGleasonGte4(m: Model): BinaryTrueFalse {
-    if (m.biopsyGrade >= 4) {
-        //console.log("Model is gleason >= 4");
-        return 1;
-    } else {
-        return 0;
-    }
-}
+
 
